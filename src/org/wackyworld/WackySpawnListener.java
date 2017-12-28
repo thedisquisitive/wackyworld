@@ -33,6 +33,7 @@ public class WackySpawnListener implements Listener {
     private WackyWorld plugin;
     private List<Color> colorList = new ArrayList<Color>();
     private List<String> seedNames = new ArrayList<String>();
+    private List<String> appleNames = new ArrayList<String>();
     
     public WackySpawnListener(WackyWorld plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
@@ -57,6 +58,10 @@ public class WackySpawnListener implements Listener {
             wackySeeds(event);
         }
         
+        else if (is.getType() == Material.APPLE) {
+            wackyApple(event);
+        }
+        
     }
     
     public void generateNames() {
@@ -69,11 +74,24 @@ public class WackySpawnListener implements Listener {
         seedNames.add("Strange Crunchy Things");
         seedNames.add("Flat-Earther Cerebellum");
         seedNames.add("Mardis Gras Beads");
+        
+        appleNames.add("Large Rat Testicle");
+        appleNames.add("Approximately 1 Apple");
+        appleNames.add("Tree Kidney");
+        appleNames.add("Gravity Detector");
+        appleNames.add("An Ordinary Banana");
+        appleNames.add("Your Trusty Sidearm");
+        appleNames.add("Rusted Macaroni");
     }
     
     public String getRandomSeedName() {
         Random r = new Random();
         return seedNames.get(r.nextInt(seedNames.size()));
+    }
+    
+    public String getRandomAppleName() {
+        Random r = new Random();
+        return appleNames.get(r.nextInt(appleNames.size()));
     }
     
     public void populateColors() {
@@ -116,6 +134,18 @@ public class WackySpawnListener implements Listener {
         
         if (roll > (100-WackyWorld.wackyChance)) {
             event.getEntity().setCustomName(getRandomSeedName());
+            event.getEntity().setCustomNameVisible(true);
+            
+            Bukkit.broadcastMessage(event.getEntity().getCustomName() + " spawned.");
+        }
+    }
+    
+    public void wackyApple(ItemSpawnEvent event) {
+        Random r = new Random();
+        int roll = r.nextInt(100);
+        
+        if (roll > (100-WackyWorld.wackyChance)) {
+            event.getEntity().setCustomName(getRandomAppleName());
             event.getEntity().setCustomNameVisible(true);
             
             Bukkit.broadcastMessage(event.getEntity().getCustomName() + " spawned.");
