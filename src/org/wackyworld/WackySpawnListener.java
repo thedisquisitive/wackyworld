@@ -32,11 +32,13 @@ import org.bukkit.inventory.meta.FireworkMeta;
 public class WackySpawnListener implements Listener {
     private WackyWorld plugin;
     private List<Color> colorList = new ArrayList<Color>();
+    private List<String> seedNames = new ArrayList<String>();
     
     public WackySpawnListener(WackyWorld plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
         this.plugin = plugin;
-        populateColors();        
+        populateColors();
+        generateNames();
     }
     
     @EventHandler(priority = EventPriority.HIGHEST)
@@ -47,22 +49,31 @@ public class WackySpawnListener implements Listener {
         Item test = (Item) event.getEntity();
         ItemStack is = test.getItemStack();
         
-        if (is.getType() != Material.EGG) return;
-        
-        //System.out.print("Egg spawned.\n");
-        
-        Random r = new Random();
-        int roll = r.nextInt(100);
-        
-        System.out.print("Egg spawned. Rolled a " + roll + ", need " + WackyWorld.wackyChance + ".\n");
-        if (r.nextInt(100) > (100-WackyWorld.wackyChance)) {
-            event.getEntity().remove();
-            event.setCancelled(true);
-            
-            setFirework(loc);
-            Bukkit.broadcastMessage("Patriotic Chicken Alert.");
+        if (is.getType() == Material.EGG) {
+            wackyEgg(event);
         }
         
+        else if (is.getType() == Material.SEEDS) {
+            wackySeeds(event);
+        }
+        
+    }
+    
+    public void generateNames() {
+        seedNames.add("Chicken Nuts");
+        seedNames.add("Gopher Balls");
+        seedNames.add("Bird Bait");
+        seedNames.add("Rabbit Pellets");
+        seedNames.add("Seeds");
+        seedNames.add("17 Year Old Candy");
+        seedNames.add("Strange Crunchy Things");
+        seedNames.add("Flat-Earther Cerebellum");
+        seedNames.add("Mardis Gras Beads");
+    }
+    
+    public String getRandomSeedName() {
+        Random r = new Random();
+        return seedNames.get(r.nextInt(seedNames.size()));
     }
     
     public void populateColors() {
@@ -83,6 +94,32 @@ public class WackySpawnListener implements Listener {
         colorList.add(Color.TEAL);
         colorList.add(Color.WHITE);
         colorList.add(Color.YELLOW);
+    }
+    
+    public void wackyEgg(ItemSpawnEvent event) {
+        Random r = new Random();
+        int roll = r.nextInt(100);
+        
+        System.out.print("Egg spawned. Rolled a " + roll + ", need " + (100-WackyWorld.wackyChance) + ".\n");
+        if (roll > (100-WackyWorld.wackyChance)) {
+            event.getEntity().remove();
+            event.setCancelled(true);
+            
+            setFirework(event.getLocation());
+            Bukkit.broadcastMessage("Patriotic Chicken Alert at " + event.getLocation().getX() + "/" + event.getLocation().getZ() + "!!");
+        }
+    }
+    
+    public void wackySeeds(ItemSpawnEvent event) {
+        Random r = new Random();
+        int roll = r.nextInt(100);
+        
+        if (roll > (100-WackyWorld.wackyChance)) {
+            event.getEntity().setCustomName(getRandomSeedName());
+            event.getEntity().setCustomNameVisible(true);
+            
+            Bukkit.broadcastMessage(event.getEntity().getCustomName() + " spawned.");
+        }
     }
     
     public void setFirework(Location loc) {
