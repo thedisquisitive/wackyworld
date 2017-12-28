@@ -1,0 +1,22 @@
+main: org.wackyworld.WackyWorld
+name: WackyWorld
+version: 0.1
+author: keptil
+description: Makes random wacky things happen throughout the world.
+
+commands:
+    wacky:
+        description: Perform a wacky command
+        usage: /wacky <reload|save>
+        permission: wacky.wacky
+        permission-message: Trying to execute this without permissions? So WACKY!
+
+permissions:
+    wacky.*:
+        description: Become the wacky overlord.
+        default: op
+        children:
+            wacky.wacky: true
+            wacky.reload: true
+            wacky.save: true
+            wacky.chance: true

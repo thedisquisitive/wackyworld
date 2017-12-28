@@ -1,0 +1,111 @@
+# The chance a chicken will lay an egg, or something else.
+# 100 = Always lay eggs.
+# 50 = Half the time lay an egg, the other half the time lay a replacement
+# 0 = Always lay replacement.
+layChance: 50
+
+# Replacements for eggs, an item for each egg drop from this list will be selected randomly.
+# Valid material names can be found at http://jd.bukkit.org/rb/apidocs/org/bukkit/Material.html
+# AIR is a valid replacement which when paired with layChance 0, will make chickens lay nothing.
+replaceWith: 
+    CLAY_BRICK: 1
+    AIR: 10
+  
+# Which worlds should this be enabled in?
+# Unlisted worlds will allow normal egg laying.
+enabled_worlds:
+    - example_world
+    - example_world_nether
+
+# Customized world settings, just add world name, enabled:true, layChance and replaceWith for 
+# the specific world. Any enabled_worlds that are NOT in perWorld, will use the default settings. 
+# Any worlds added to perWorld that are NOT in enabled worlds will still be disabled.
+perWorld:
+    example_world:
+        enabled: true
+        layChance: 50
+        replaceWith:
+            DIAMOND: 1
+            STONE: 5
+            AIR: 30
+            _chicken_boots: 1
+            _cyan_wool: 1
+        perBiome:
+            PLAINS:
+                enabled: true
+                layChance: 50
+                replaceWith:
+                    _chicken_boots: 1
+                    _cyan_wool: 1 
+                    _lime_wool: 1
+                    _brown_wool: 1
+                    _magenta_wool: 1
+                    GOLD_INGOT: 1
+
+# Special item drops, these can be anything you want, just create an item like the example, the 
+# "type" needs to be an official bukkit item, you can apply enchantments, item name, data value, 
+# lore and color if the item can have them. This is a very BETA feature and may have some bugs so be 
+# careful! To link the special item put it in your replaceWith area with an underscore like so:
+# _mySpecialItemName
+special:
+    chicken_boots: 
+        type: LEATHER_BOOTS
+        enchants: 
+            PROTECTION_ENVIRONMENTAL: 1
+        name: "Chicken Boots"
+        lore: 
+            - "From the chicken gods"
+        color: 0x00FF00     
+    white_wool:
+        type: WOOL
+        data_value: 0
+    orange_wool:
+        type: WOOL
+        data_value: 1
+    magenta_wool:
+        type: WOOL
+        data_value: 2    
+    light_blue_wool:
+        type: WOOL
+        data_value: 3   
+    yellow_wool:
+        type: WOOL
+        data_value: 4   
+    lime_wool:
+        type: WOOL
+        data_value: 5   
+    pink_wool:
+        type: WOOL
+        data_value: 6   
+    gray_wool:
+        type: WOOL
+        data_value: 7  
+    light_gray_wool:
+        type: WOOL
+        data_value: 8   
+    cyan_wool:
+        type: WOOL
+        data_value: 9   
+    purple_wool:
+        type: WOOL
+        data_value: 10    
+    blue_wool:
+        type: WOOL
+        data_value: 11   
+    brown_wool:
+        type: WOOL
+        data_value: 12    
+    green_wool:
+        type: WOOL
+        data_value: 13    
+    red_wool:
+        type: WOOL
+        data_value: 14    
+    black_wool:
+        type: WOOL
+        data_value: 15    
+         
+# Enable logging (for debugging, generally leave this false unless you are having problems)
+# Note that on production servers with lots of chicken farms this log could get very big!
+debug_log: false
+    
