@@ -35,11 +35,11 @@ public class WackyJoinListener implements Listener {
     public void onJoin(PlayerJoinEvent event) {
         //Bukkit.broadcastMessage("Wacky join.");
         generateGreeting(event);
-        Random r = new Random();
-        int numfw = r.nextInt(3) + 1;
-        for (int i = 0; i < numfw; i++) {
-            setFirework(event.getPlayer().getLocation());
-        }
+        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+            public void run() {
+                setJoinFirework(event.getPlayer().getLocation());
+            }
+        }, 20);
     }
     
     public void generateGreeting(PlayerJoinEvent event) {
@@ -75,7 +75,7 @@ public class WackyJoinListener implements Listener {
         }
     }
     
-    public void setFirework(Location loc) {
+    public void setJoinFirework(Location loc) {
         Firework fw = (Firework) loc.getWorld().spawnEntity(loc, EntityType.FIREWORK);
         FireworkMeta fwm = fw.getFireworkMeta();
         
@@ -93,9 +93,11 @@ public class WackyJoinListener implements Listener {
         
         FireworkEffect effect = FireworkEffect.builder().flicker(r.nextBoolean()).withColor(c1).withFade(c2).with(type).trail(r.nextBoolean()).build();
         fwm.addEffect(effect);
-        int rp = r.nextInt(2) + 1;
-        fwm.setPower(rp);
+        
+        fwm.setPower(1);
         
         fw.setFireworkMeta(fwm);
+        System.out.print("Spawn firework done.\n");
+        
     }
 }
