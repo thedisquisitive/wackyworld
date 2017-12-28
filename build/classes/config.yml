@@ -1,9 +1,5 @@
-#Chance that wackiness will happen
-wackyChance: 75
+wackyChance: 100
 
-# Replacements for eggs, an item for each egg drop from this list will be selected randomly.
-# Valid material names can be found at http://jd.bukkit.org/rb/apidocs/org/bukkit/Material.html
-# AIR is a valid replacement which when paired with layChance 0, will make chickens lay nothing.
 replaceWith: 
     APPLE: 1
     CHICKEN: 10

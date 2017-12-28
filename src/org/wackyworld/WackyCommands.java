@@ -65,12 +65,15 @@ public class WackyCommands implements CommandExecutor {
                     WackyWorld.wackyChance = 100;
                 }
             }
+            else if (args[0].equalsIgnoreCase("status")) {
+                sender.sendMessage("WackyWorld Wacky Chance: " + WackyWorld.wackyChance);
+            }
             else {
-                sender.sendMessage("Wacky usage: /wacky <reload|save>");
+                sender.sendMessage("Wacky usage: /wacky <reload|save|chance|status>");
             }
         }
         else {
-            sender.sendMessage("Wacky usage: /wacky <reload|save>");
+            sender.sendMessage("Wacky usage: /wacky <reload|save|chance|status>");
         }
     }
 }
