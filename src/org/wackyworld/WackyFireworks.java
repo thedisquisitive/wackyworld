@@ -61,8 +61,8 @@ public class WackyFireworks {
         if (rt == 4) type = FireworkEffect.Type.CREEPER;
         if (rt == 5) type = FireworkEffect.Type.STAR;
         
-        int r1i = r.nextInt(colorList.size()) + 1;
-        int r2i = r.nextInt(colorList.size()) + 1;
+        int r1i = r.nextInt(colorList.size());
+        int r2i = r.nextInt(colorList.size());
         Color c1 = colorList.get(r1i);
         Color c2 = colorList.get(r2i);
         
