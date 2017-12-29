@@ -5,6 +5,7 @@
  */
 package org.wackyworld;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -67,6 +68,9 @@ public class WackyCommands implements CommandExecutor {
             }
             else if (args[0].equalsIgnoreCase("status")) {
                 sender.sendMessage("WackyWorld Wacky Chance: " + WackyWorld.wackyChance);
+            }
+            else if (args[0].equalsIgnoreCase("firework")) {
+                WackyWorld.fireworkControl.setRandomFirework(Bukkit.getPlayer(sender.getName()).getLocation());
             }
             else {
                 sender.sendMessage("Wacky usage: /wacky <reload|save|chance|status>");

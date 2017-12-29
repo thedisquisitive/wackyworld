@@ -32,6 +32,7 @@ public class WackyWorld  extends JavaPlugin {
     public static Boolean logEnabled;
     static Random randomGen = new Random();
     public static PluginDescriptionFile pdfFile;
+    public static WackyFireworks fireworkControl = new WackyFireworks();
     
     @Override
     public void onEnable() {

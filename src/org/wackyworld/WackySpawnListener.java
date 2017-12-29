@@ -31,7 +31,7 @@ import org.bukkit.inventory.meta.FireworkMeta;
  */
 public class WackySpawnListener implements Listener {
     private WackyWorld plugin;
-    private List<Color> colorList = new ArrayList<Color>();
+    
     private List<String> seedNames = new ArrayList<String>();
     private List<String> appleNames = new ArrayList<String>();
     private List<String> adjectiveList = new ArrayList<String>();
@@ -41,7 +41,6 @@ public class WackySpawnListener implements Listener {
     public WackySpawnListener(WackyWorld plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
         this.plugin = plugin;
-        populateColors();
         generateNames();
     }
     
@@ -180,27 +179,7 @@ public class WackySpawnListener implements Listener {
         Random r = new Random();
         return (adjectiveList.get(r.nextInt(adjectiveList.size())) + " " + properNounList.get(r.nextInt(properNounList.size())) + " " + nounList.get(r.nextInt(nounList.size())));
     }
-    
-    public void populateColors() {
-        colorList.add(Color.RED);
-        colorList.add(Color.AQUA);
-        colorList.add(Color.BLACK);
-        colorList.add(Color.BLUE);
-        colorList.add(Color.FUCHSIA);
-        colorList.add(Color.GRAY);
-        colorList.add(Color.GREEN);
-        colorList.add(Color.LIME);
-        colorList.add(Color.MAROON);
-        colorList.add(Color.NAVY);
-        colorList.add(Color.OLIVE);
-        colorList.add(Color.ORANGE);
-        colorList.add(Color.PURPLE);
-        colorList.add(Color.SILVER);
-        colorList.add(Color.TEAL);
-        colorList.add(Color.WHITE);
-        colorList.add(Color.YELLOW);
-    }
-    
+        
     public void wackyEgg(ItemSpawnEvent event) {
         Random r = new Random();
         int roll = r.nextInt(100);
@@ -210,7 +189,7 @@ public class WackySpawnListener implements Listener {
             event.getEntity().remove();
             event.setCancelled(true);
             
-            setFirework(event.getLocation());
+            WackyWorld.fireworkControl.setRandomFirework(event.getLocation());
             //Bukkit.broadcastMessage("Patriotic Chicken Alert at " + event.getLocation().getX() + "/" + event.getLocation().getZ() + "!!");
         }
     }
@@ -245,35 +224,11 @@ public class WackySpawnListener implements Listener {
             event.getEntity().setCustomName(getRandomAppleName());
             event.getEntity().setCustomNameVisible(true);
             
-            Bukkit.broadcastMessage(event.getEntity().getCustomName() + " spawned.");
+            //Bukkit.broadcastMessage(event.getEntity().getCustomName() + " spawned.");
         }
     }
     
-    public void setFirework(Location loc) {
-        Firework fw = (Firework) loc.getWorld().spawnEntity(loc, EntityType.FIREWORK);
-        FireworkMeta fwm = fw.getFireworkMeta();
-        
-        Random r = new Random();
-        int rt = r.nextInt(4) + 1;
-        Type type = Type.BALL;
-        if (rt == 1) type = Type.BALL;
-        if (rt == 2) type = Type.BALL_LARGE;
-        if (rt == 3) type = Type.BURST;
-        if (rt == 4) type = Type.CREEPER;
-        if (rt == 5) type = Type.STAR;
-        
-        int r1i = r.nextInt(colorList.size()) + 1;
-        int r2i = r.nextInt(colorList.size()) + 1;
-        Color c1 = colorList.get(r1i);
-        Color c2 = colorList.get(r2i);
-        
-        FireworkEffect effect = FireworkEffect.builder().flicker(r.nextBoolean()).withColor(c1).withFade(c2).with(type).trail(r.nextBoolean()).build();
-        fwm.addEffect(effect);
-        int rp = r.nextInt(2) + 1;
-        fwm.setPower(rp);
-        
-        fw.setFireworkMeta(fwm);
-    }
+    
     
     
 }
