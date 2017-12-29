@@ -41,6 +41,7 @@ public class WackyWorld  extends JavaPlugin {
         
         new WackySpawnListener(this);
         new WackyJoinListener(this);
+        new WackyDeathListener(this);
         
         WackyWorld.dataFolder = getDataFolder();
         
