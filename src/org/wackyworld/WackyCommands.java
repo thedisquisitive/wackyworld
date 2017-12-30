@@ -65,6 +65,8 @@ public class WackyCommands implements CommandExecutor {
                 if (WackyWorld.wackyChance > 100) {
                     WackyWorld.wackyChance = 100;
                 }
+                sender.sendMessage("Wacky Chance is now " + WackyWorld.wackyChance);
+                plugin.getConfig().set("wackyChance", WackyWorld.wackyChance);
             }
             else if (args[0].equalsIgnoreCase("status")) {
                 sender.sendMessage("WackyWorld Wacky Chance: " + WackyWorld.wackyChance);
