@@ -40,7 +40,9 @@ public class WackyWorld  extends JavaPlugin {
     private List<String> adjectiveList;// = new List<String>();
     private List<String> properNounList;// = new ArrayList<String>();
     private List<String> nounList;// = new ArrayList<String>();
-    public  List<String> lavaDeaths;
+    
+    public List<String> joinMessages;
+    public List<String> lavaDeaths;
     public List<String> fallDeaths = new ArrayList<String>();
     public List<String> crushDeaths = new ArrayList<String>();
     public List<String> explosionDeaths = new ArrayList<String>();
@@ -69,6 +71,7 @@ public class WackyWorld  extends JavaPlugin {
         new WackyDeathListener(this);
         
         getCommand("wacky").setExecutor(new WackyCommands(this));
+        getCommand("gps").setExecutor(new WackyCommands(this));
         
         if (WackyWorld.logEnabled) {
             WackyWorld.logToFile(WackyWorld.pdfFile.getName() + " ver. " + WackyWorld.pdfFile.getVersion() + " [enabled]");
@@ -152,6 +155,8 @@ public class WackyWorld  extends JavaPlugin {
         contactDeaths = this.getConfig().getStringList("deaths.contact");
         projectileDeaths = this.getConfig().getStringList("deaths.projectile");
         creeperDeaths = this.getConfig().getStringList("deaths.creeper");
+        
+        joinMessages = this.getConfig().getStringList("join");
         
         System.out.println("Names loaded..");
         System.out.println("seedNames.size: " + seedNames.size());

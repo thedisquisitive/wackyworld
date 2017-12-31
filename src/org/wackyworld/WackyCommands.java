@@ -33,6 +33,11 @@ public class WackyCommands implements CommandExecutor {
                 wacky(sender, cmd, label, args);
                 return true;
             }
+            else if (cmd.getName().equalsIgnoreCase("gps")) {
+                Bukkit.broadcastMessage(sender.getName() + " is calling attention to this position: ");
+                Bukkit.broadcastMessage("X: "+ (int) Bukkit.getPlayer(sender.getName()).getLocation().getX() + ", Z: " + (int)Bukkit.getPlayer(sender.getName()).getLocation().getZ());
+                return true;
+            }
         }
         return false;
     }
@@ -73,6 +78,10 @@ public class WackyCommands implements CommandExecutor {
             }
             else if (args[0].equalsIgnoreCase("firework")) {
                 WackyWorld.fireworkControl.setRandomFirework(Bukkit.getPlayer(sender.getName()).getLocation());
+            }
+            else if (args[0].equalsIgnoreCase("gps")) {
+                Bukkit.broadcastMessage(sender.getName() + " is calling attention to this position: ");
+                Bukkit.broadcastMessage("X: "+ (int) Bukkit.getPlayer(sender.getName()).getLocation().getX() + ", Z: " + (int)Bukkit.getPlayer(sender.getName()).getLocation().getZ());
             }
             else {
                 sender.sendMessage("Wacky usage: /wacky <reload|save|chance|status>");

@@ -44,34 +44,12 @@ public class WackyJoinListener implements Listener {
     
     public void generateGreeting(PlayerJoinEvent event) {
         Random r = new Random();
-        int roll = r.nextInt(7);
+        int roll = r.nextInt(plugin.joinMessages.size());
         
         String playerName = event.getPlayer().getName();
+        String greeting = plugin.joinMessages.get(roll).replace("$P", playerName);
         
-        switch (roll) {
-            case 0:
-                event.setJoinMessage("Welcome back to the USSR, " + playerName + "!");
-                break;
-            case 1:
-                event.setJoinMessage("Warning: " + playerName + " just joined the sexiest server on the flat earth.");
-                break;
-            case 2:
-                event.setJoinMessage(playerName + " joined right as the mob of creepers blew up their base.");
-                break;
-            case 3:
-                event.setJoinMessage(playerName + " has decided to tip-toe through the tulips with us.");
-                break;
-            case 4:
-                event.setJoinMessage("I hope you brought bacon, " + playerName + ".");
-                break;
-            case 5:
-                event.setJoinMessage("Just follow the white rabbit, " + playerName + "...");
-                break;
-            case 6:
-                event.setJoinMessage(playerName + " HAS HACKED THE PLANET!");
-                break;
-            default:
-                break;
-        }
+        event.setJoinMessage(greeting);
+        
     }
 }

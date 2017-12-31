@@ -26,14 +26,14 @@ public class WackyFireworks {
     private void populateColors() {
         colorList.add(Color.RED);
         colorList.add(Color.AQUA);
-        colorList.add(Color.BLACK);
+        //colorList.add(Color.BLACK);
         colorList.add(Color.BLUE);
         colorList.add(Color.FUCHSIA);
-        colorList.add(Color.GRAY);
+        //colorList.add(Color.GRAY);
         colorList.add(Color.GREEN);
         colorList.add(Color.LIME);
         colorList.add(Color.MAROON);
-        colorList.add(Color.NAVY);
+        //colorList.add(Color.NAVY);
         colorList.add(Color.OLIVE);
         colorList.add(Color.ORANGE);
         colorList.add(Color.PURPLE);

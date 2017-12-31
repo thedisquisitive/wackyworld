@@ -7,11 +7,18 @@ description: Makes random wacky things happen throughout the world.
 commands:
     wacky:
         description: Perform a wacky command
-        usage: /wacky <reload|save|chance|status|firework>
+        usage: /wacky <reload|save|chance|status|firework|gps>
         permission: wacky.wacky
         permission-message: Trying to execute this without permissions? So WACKY!
+    gps:
+        description: Broadcast player coordinates.
+        permission: gps
+        permission-message: Your coordinates are DENIED.
 
 permissions:
+    gps:
+        description: Broadcast your X and Z coords.
+        default: op
     wacky.*:
         description: Become the wacky overlord.
         default: op
@@ -22,3 +29,4 @@ permissions:
             wacky.chance: true
             wacky.status: true
             wacky.firework: true
+            wacky.gps: true

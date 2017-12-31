@@ -111,6 +111,7 @@ deaths:
         - $P attempted the classic '8-stick bomb trick' and failed.
         - $P's insides are now on the outside. 
         - $P discovered the difference between TNT and not-TNT.
+        - $P tried to rocket jump and failed.
     starvation:
         - $P forgot how to eat.
         - $P dieted too hard.
@@ -129,7 +130,7 @@ deaths:
         - I never saw anything s'more toasted than $P.
         - $P forgot to stop, drop, and roll.
     suicide:
-        
+        - $P entered \wrist.
     contact:
         - $P poked the wrong cactus.
         - $P mined the wrong diamond.
@@ -145,6 +146,12 @@ deaths:
         - $P was taken by the creeping death.
         - $P didn't fear the reaper.
     
+join:
+    - Welcome, $P. Please ignore the bodies.
+    - Wacky $P wackily joins Wacky Wonderland.
+    - $P has joined. Oh joy.
+    - Welcome to Crazy Frank's Cube Stacking Simulator, $P!
+    - You don't need no stinkin' badgers here, $P.
 
 debug_log: false
     
